@@ -13,23 +13,7 @@ pipeline
 
   stages
    {
-    stage('Clean')
-     {
-      steps
-       {
-        script
-         {
-          if (isUnix()) 
-           {
-            sh 'mvn --batch-mode clean'
-           }
-          else
-           {
-            bat 'mvn --batch-mode clean'
-           }
-         }
-       }
-     }
+    
 
     stage('Build')
      {

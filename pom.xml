@@ -8,10 +8,10 @@
 		<version>2.3.1.RELEASE</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.coralogix</groupId>
-	<artifactId>calculator</artifactId>
+	<groupId>stokito.unitTestExample</groupId>
+	<artifactId>JenkinsPipline</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>calculator</name>
+	<name>JenkinsPipline</name>
 	<description>Calculator project for demonstrating CI/CD pipelines</description>
 
 	<properties>

@@ -20,7 +20,7 @@ pipeline {
 
             steps {
               
-                    bat 'mvn test'
+                  bat 'mvn --batch-mode resources:testResources compiler:testCompile surefire:test'
               
             }
              post {

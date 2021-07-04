@@ -19,8 +19,7 @@ pipeline {
         stage ('Testing Stage') {
 
             steps {
-              git 'https://github.com/MuhammadAamir21/JenkinsPipline.git'
-                  bat 'mvn --batch-mode resources:test compiler:testCompile surefire:test'
+                  bat 'mvn test'
               
             }
              post {

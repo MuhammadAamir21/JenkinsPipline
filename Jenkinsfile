@@ -1,35 +1,87 @@
-pipeline {
-    agent any
+pipeline
+ {
+  agent any
 
-      tools {
-        // Install the Maven version configured as "M3" and add it to the path.
-        maven "MAVEN_HOME"
-    }
-
-    stages {
-        stage ('Build Stage') {
-
-            steps {
-                   git 'https://github.com/MuhammadAamir21/JenkinsPipline.git'
-                    bat 'mvn clean compile'
-             
-            }
-        }
-
-        stage ('Testing Stage') {
-
-            steps {
-                  bat 'mvn test'
-              
-            }
-             post {
-                always{
-                   junit '**/target/surefire-reports/TEST-*.xml'
-                   archiveArtifacts 'target/*.jar'
-                }
-            }
-        }
+  tools
+   {
+    maven 'MAVEN_HOME'
+    jdk 'JAVA_HOME'
+   }
 
 
-    }
-}
+
+
+  stages
+   {
+    stage('Clean')
+     {
+      steps
+       {
+        script
+         {
+          if (isUnix()) 
+           {
+            sh 'mvn --batch-mode clean'
+           }
+          else
+           {
+            bat 'mvn --batch-mode clean'
+           }
+         }
+       }
+     }
+
+    stage('Build')
+     {
+      steps
+       {
+        script
+         {
+          if (isUnix()) 
+           {
+            sh 'mvn --batch-mode compile'
+           }
+          else
+           {
+            bat 'mvn --batch-mode compile'
+           }
+         }
+       }
+     }
+
+    stage('UnitTests')
+     {
+      steps
+       {
+        script
+         {
+          if (isUnix()) 
+           {
+            sh 'mvn --batch-mode resources:testResources compiler:testCompile surefire:test'
+           }
+          else
+           {
+            bat 'mvn --batch-mode resources:testResources compiler:testCompile surefire:test'
+           }
+         }
+       }
+      post
+       {
+        always
+         {
+          junit testResults: 'target/surefire-reports/*.xml'
+         }
+       }
+     }
+
+   
+ 
+    
+
+   
+
+  
+
+   }
+
+ }

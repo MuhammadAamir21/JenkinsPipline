@@ -53,7 +53,7 @@ pipeline
        {
         always
          {
-          junit testResults: 'target/surefire-reports/*.xml'
+          junit testResults: '${basedir}/target/surefire-reports/TEST-*.xml'
          }
        }
      }

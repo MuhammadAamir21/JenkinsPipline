@@ -10,7 +10,7 @@ pipeline {
         stage ('Build Stage') {
 
             steps {
-               
+                   git 'https://github.com/MuhammadAamir21/JenkinsPipline.git'
                     bat 'mvn clean compile'
              
             }

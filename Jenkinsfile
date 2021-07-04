@@ -6,7 +6,7 @@ pipeline {
 
             steps {
                
-                    sh 'mvn clean compile'
+                    bat 'mvn clean compile'
              
             }
         }
@@ -15,8 +15,13 @@ pipeline {
 
             steps {
               
-                    sh 'mvn test'
+                    bat 'mvn test'
               
+            }
+             post {
+                always{
+                    junit '**/target/surefile-reports/TEST-*.xml'
+                }
             }
         }
 

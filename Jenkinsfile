@@ -49,13 +49,7 @@ pipeline
            }
          }
        }
-      post
-       {
-        always
-         {
-          junit testResults: '${basedir}/target/surefire-reports/TEST-*.xml'
-         }
-       }
+    
      }
 
    

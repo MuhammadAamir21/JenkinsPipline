@@ -1,65 +1,25 @@
-pipeline
- {
-  agent any
+pipeline {
+    agent any
 
-  tools
-   {
-    maven 'MAVEN_HOME'
-    jdk 'JAVA_HOME'
-   }
+    stages {
+        stage ('Build Stage') {
+
+            steps {
+               
+                    sh 'mvn clean compile'
+             
+            }
+        }
+
+        stage ('Testing Stage') {
+
+            steps {
+              
+                    sh 'mvn test'
+              
+            }
+        }
 
 
-
-
-  stages
-   {
-    
-
-    stage('Build')
-     {
-      steps
-       {
-        script
-         {
-          if (isUnix()) 
-           {
-            sh 'mvn --batch-mode compile'
-           }
-          else
-           {
-            bat 'mvn --batch-mode compile'
-           }
-         }
-       }
-     }
-
-    stage('UnitTests')
-     {
-      steps
-       {
-        script
-         {
-          if (isUnix()) 
-           {
-            sh 'mvn --batch-mode resources:testResources compiler:testCompile surefire:test'
-           }
-          else
-           {
-            bat 'mvn --batch-mode resources:testResources compiler:testCompile surefire:test'
-           }
-         }
-       }
-    
-     }
-
-   
- 
-    
-
-   
-
-  
-
-   }
-
- }
+    }
+}
